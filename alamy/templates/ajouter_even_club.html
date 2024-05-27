@@ -137,14 +137,11 @@
 </head>
 <body>
     <div class="container">
-        <!-- Utilisation de la classe "card" pour envelopper le formulaire dans une card Bootstrap -->
             <div class="card-body">
                
-                <!-- Utilisation de la classe "form-group" de Bootstrap pour chaque champ de formulaire -->
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
 
-                    <!-- Chaque champ du formulaire enveloppé dans une div.form-group -->
                     <div class="form-group">
                         {{ form.as_p }}
                     </div>
@@ -152,18 +149,15 @@
              
               
 
-                    <!-- Bouton "Ajouter" stylisé avec la classe "btn btn-primary" de Bootstrap -->
                     <button type="submit" class="btn btn-primary">Ajouter</button>
                 </form>
             </div>
     </div>
 
-    <!-- Inclure les scripts JavaScript de Bootstrap (optionnel, mais nécessaire pour certains composants Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // Script pour afficher le nom du fichier sélectionné
         $(document).ready(function() {
             $(".custom-file-input").on("change", function() {
                 var fileName = $(this).val().split("\\").pop();

@@ -14,7 +14,7 @@
         <img src="{{ poste.image.url }}" alt="Image du poste">
         {% endif %}
         {% if poste.stage %}
-        <!-- Si c'est un stage -->
+        
         <p>Type de stage: {{ poste.stage.get_typeStg_display }}</p>
         <p>Société: {{ poste.stage.societe }}</p>
         <p>Durée: {{ poste.stage.duree }}</p>
@@ -22,19 +22,19 @@
         <p>Description: {{ poste.stage.description }}</p>
         <p>Lieu: {{ poste.stage.lieu }}</p>
         {% elif poste.evenement %}
-        <!-- Si c'est un événement -->
+        
         <p>Intitulé: {{ poste.evenement.intitule }}</p>
         <p>Description: {{ poste.evenement.description }}</p>
         <p>Date: {{ poste.evenement.date }}</p>
         <p>Lieu: {{ poste.evenement.lieu }}</p>
         <p>Contact Info: {{ poste.evenement.contactinfo }}</p>
         {% elif poste.logement %}
-        <!-- Si c'est un logement -->
+       
         <p>Localisation: {{ poste.logement.localisation }}</p>
         <p>Description: {{ poste.logement.description }}</p>
         <p>Contact Info: {{ poste.logement.contactinfo }}</p>
         {% elif poste.transport %}
-        <!-- Si c'est un transport -->
+       
         <p>Départ: {{ poste.transport.depart }}</p>
         <p>Destination: {{ poste.transport.destination }}</p>
         <p>Heure de départ: {{ poste.transport.heuredep }}</p>

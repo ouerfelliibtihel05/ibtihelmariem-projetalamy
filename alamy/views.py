@@ -7,6 +7,9 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
+from django.template.loader import render_to_string
+from django.http import HttpResponseBadRequest
 from .Forms import StageForm
 from .Forms import UtilisateurForm
 from .models import Poste
@@ -73,6 +76,13 @@ def login_user(request):
 
 def accueuil(request):
     return render(request, 'accueuil.html')
+
+def listpost(request):
+    return render(request, 'listpost.html')
+
+
+def recharge(request):
+    return render(request, 'recharge.html')
 
 def univer(request):
     return render(request, 'univer.html')
@@ -413,7 +423,7 @@ def ajouter_transport(request):
                 transport.save()
                 return redirect('alamy:page_utilisateur')
             else:
-                # Handle the case where the Utilisateur object does not exist
+                
                 pass
     else:
         form = TransportForm(utilisateur=request.user)
@@ -432,7 +442,7 @@ def ajouter_logement(request):
                 logement.save()
                 return redirect('alamy:page_utilisateur')
             else:
-                # Handle the case where the Utilisateur object does not exist
+            
                 pass
     else:
         form = LogementForm(utilisateur=request.user)
@@ -453,7 +463,7 @@ def ajouter_even_soc(request):
                 evensoc.save()
                 return redirect('alamy:page_utilisateur')
             else:
-                # Gérer le cas où l'objet Utilisateur n'existe pas
+                
                 pass
     else:
         form = EvenSocialForm(utilisateur=request.user)
@@ -473,7 +483,7 @@ def ajouter_even_club(request):
                 evenclub.save()
                 return redirect('alamy:page_utilisateur')
             else:
-                # Gérer le cas où l'objet Utilisateur n'existe pas
+               
                 pass
     else:
         form = EvenclubForm(utilisateur=request.user)
@@ -481,9 +491,7 @@ def ajouter_even_club(request):
 
 
 
-from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
-from django.template.loader import render_to_string
-from django.http import HttpResponseBadRequest
+
 
 def reserver_poste(request, poste_id):
     poste = get_object_or_404(Poste, pk=poste_id)
@@ -503,7 +511,7 @@ def reserver_poste(request, poste_id):
             reservation = form.save(commit=False)
             reservation.poste = poste
             
-            # Check if the reservation is valid based on available tickets/places
+           
             if hasattr(poste, 'evenement') and poste.evenement.nombretickets is not None:
                 if reservation.nombre_tickets > poste.evenement.nombretickets:
                     message = 'Impossible de réserver, nombre de tickets insuffisant.'
@@ -520,10 +528,10 @@ def reserver_poste(request, poste_id):
                     alert_html = render_to_string('reservation_alert.html', {'message': message})
                     return HttpResponseBadRequest(alert_html)
             
-            # Save the reservation if it's valid
+           
             reservation.save()
 
-            # Update the available tickets/places
+           
             if hasattr(poste, 'evenement') and poste.evenement.nombretickets is not None:
                 poste.evenement.nombretickets -= reservation.nombre_tickets
                 poste.evenement.save()

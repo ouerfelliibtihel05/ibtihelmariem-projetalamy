@@ -1,8 +1,11 @@
-from django.urls import path   #,include
+from django.urls import path   
 from . import views
 app_name = 'alamy'
 urlpatterns = [	
 
+
+ path('listpost', views.listpost,name='listpost'),
+    path('recharge', views.recharge,name='recharge'),
     path('univer', views.univer,name='univer'),
     path('communication', views.communication,name='communication'),
     path('get_comments/<int:poste_id>/', views.get_comments, name='get_comments'),

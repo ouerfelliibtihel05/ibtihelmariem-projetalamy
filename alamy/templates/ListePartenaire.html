@@ -80,7 +80,11 @@ table td {
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h3>Liste des Partenaires</h3>
+                <div class="col-auto">
+                    <a href="{% url 'alamy:admine' %}" class="btn btn-link"><i class="bi bi-chevron-left text-dark"></i></a>
+                    <h3>Liste des Partenaires</h3>
+                </div>
+               
                 <ul class="list-unstyled">
                     {% for Utilisateur in ListePartenaires %}
                     <li class="user-container">
@@ -94,7 +98,7 @@ table td {
                                     <form action="{% url 'alamy:supprimer_user' Utilisateur.id %}" method="post">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="bi bi-trash"></i> <!-- Utilisation de l'icône de suppression -->
+                                            <i class="bi bi-trash"></i> 
                                         </button>
                                     </form>
                                 </td>
